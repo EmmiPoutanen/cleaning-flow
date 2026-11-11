@@ -1,3 +1,5 @@
+/** @file Customer endpoints mounted at /api/customers. */
+
 import { Router } from "express";
 import {
   getCustomers,

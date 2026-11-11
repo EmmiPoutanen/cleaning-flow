@@ -1,3 +1,5 @@
+/** @file Cleaning visit scheduling form for existing customers. */
+
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import {
   createVisit,
@@ -6,12 +8,21 @@ import {
   type Visit,
 } from "../services/api";
 
+/** Available customers, dashboard date, and notification callback supplied by the parent. */
 interface VisitManagementProps {
+  /** Customers available for selection when scheduling a visit. */
   customers: Customer[];
+  /** Dashboard date (YYYY-MM-DD), used to initialize and synchronize the form date. */
   selectedDate: string;
+  /** Receives the saved visit so the parent can update its dashboard state. */
   onVisitCreated: (visit: Visit) => void;
 }
 
+/**
+ * Schedules visits for existing customers and displays submission feedback.
+ *
+ * @returns The JSX element containing the form, or guidance to add a customer when none exist.
+ */
 function VisitManagement({
   customers,
   selectedDate,
@@ -29,12 +40,19 @@ function VisitManagement({
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
+  // Follow dashboard date changes without resetting the other fields.
   const [previousDate, setPreviousDate] = useState(selectedDate);
   if (previousDate !== selectedDate) {
     setPreviousDate(selectedDate);
     setFormData((previous) => ({ ...previous, date: selectedDate }));
   }
 
+  /**
+   * Updates the named field, converting customer IDs and durations to numbers.
+   *
+   * @param event - Change event from a named form control.
+   * @returns No value; updates local form state.
+   */
   function handleChange(
     event: ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -53,6 +71,12 @@ function VisitManagement({
     setSuccess(false);
   }
 
+  /**
+   * Validates the customer selection, saves the visit, and resets on success.
+   *
+   * @param event - Form submission event; default navigation is prevented.
+   * @returns A promise resolving without a value; validation and save errors appear in the form.
+   */
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 

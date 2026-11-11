@@ -1,3 +1,5 @@
+/** @file Configures Express middleware and API routes without starting the HTTP server. */
+
 import express from "express";
 import cors from "cors";
 import customerRoutes from "./routes/customerRoutes.js";

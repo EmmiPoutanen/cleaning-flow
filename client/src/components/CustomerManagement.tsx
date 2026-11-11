@@ -1,3 +1,5 @@
+/** @file Customer creation form and customer list, backed by the shared API client. */
+
 import { useState } from "react";
 import {
   createCustomer,
@@ -5,11 +7,19 @@ import {
   type NewCustomer,
 } from "../services/api";
 
+/** Customer list and notification callback supplied by the parent. */
 interface CustomerManagementProps {
+  /** Customers to display in the list. */
   customers: Customer[];
+  /** Receives the saved customer so the parent can update its shared list. */
   onCustomerCreated: (customer: Customer) => void;
 }
 
+/**
+ * Displays customers and manages creation feedback and form state.
+ *
+ * @returns The JSX element containing the customer list and creation form.
+ */
 function CustomerManagement({
   customers,
   onCustomerCreated,
@@ -25,6 +35,12 @@ function CustomerManagement({
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
+  /**
+   * Updates the named field and clears the previous success message.
+   *
+   * @param event - Change event from a named form control.
+   * @returns No value; updates local form state.
+   */
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
@@ -36,6 +52,12 @@ function CustomerManagement({
     setSuccess(false);
   }
 
+  /**
+   * Saves the customer, notifies the parent, and resets the form on success.
+   *
+   * @param event - Form submission event; default navigation is prevented.
+   * @returns A promise resolving without a value; save errors are displayed in the form.
+   */
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 

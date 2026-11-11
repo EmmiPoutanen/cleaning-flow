@@ -1,3 +1,5 @@
+/** @file Server entry point; loads environment variables and starts the API on port 3000. */
+
 import "dotenv/config";
 import app from "./app.js";
 

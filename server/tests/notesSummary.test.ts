@@ -4,7 +4,7 @@ import { summarizeNotes } from "../src/services/notesSummary.js";
 const fetchMock = vi.fn();
 beforeEach(() => {
   vi.stubEnv("OPENAI_API_KEY", "test-key");
-  vi.stubEnv("OPENAI_MODEL", "gpt-5-mini");
+  vi.stubEnv("OPENAI_MODEL", "gpt-6-luna");
   vi.stubGlobal("fetch", fetchMock);
   fetchMock.mockReset();
   vi.spyOn(console, "warn").mockImplementation(() => {});

@@ -1,3 +1,5 @@
+/** @file Cleaning visit endpoints mounted at /api/visits. */
+
 import { Router } from "express";
 import {
   getVisits,

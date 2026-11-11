@@ -1,9 +1,17 @@
+/** @file Express handlers for scheduling visits, listing them, and updating their status. */
+
 import type { Request, Response } from "express";
 import db from "../database/database.js";
 import { summarizeNotes } from "../services/notesSummary.js";
 import { isValidDate } from "../utils/date.js";
 
-// Get all cleaning visits
+/**
+ * Returns visits ordered by date with customer names and addresses.
+ *
+ * @param _req - Unused Express request.
+ * @param res - Express JSON response.
+ * @returns The Express response object after sending the visit array as JSON (200).
+ */
 export function getVisits(_req: Request, res: Response) {
   const visits = db
     .prepare(
@@ -22,7 +30,14 @@ export function getVisits(_req: Request, res: Response) {
   return res.json(visits);
 }
 
-// Create a new cleaning visit
+/**
+ * Validates and saves a scheduled visit, then attempts to summarize its notes.
+ *
+ * @param req - Body with customerId, employeeName, date, durationMinutes, and optional notes.
+ * @param res - Express JSON response.
+ * @returns A promise resolving to the Express response after sending visit JSON (201)
+ * or a validation (400) or missing-customer (404) error; database failures reject the promise.
+ */
 export async function createVisit(req: Request, res: Response) {
   const { customerId, employeeName, date, durationMinutes, notes } =
     req.body ?? {};
@@ -99,7 +114,13 @@ export async function createVisit(req: Request, res: Response) {
   return res.status(201).json(newVisit);
 }
 
-// Update the status of a cleaning visit
+/**
+ * Validates the visit ID and status, then returns the updated visit with customer details.
+ *
+ * @param req - Visit ID in params.id and target status in body.status.
+ * @param res - Express JSON response.
+ * @returns The Express response after sending updated visit JSON (200) or an error (400 or 404).
+ */
 export function updateVisitStatus(req: Request, res: Response) {
   const visitId = Number(req.params.id);
   const { status } = req.body ?? {};

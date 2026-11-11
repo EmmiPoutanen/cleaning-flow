@@ -1,3 +1,5 @@
+/** @file Opens the shared SQLite connection and initializes or upgrades the schema on import. */
+
 import Database from "better-sqlite3";
 
 // Create or open the database file

@@ -1,13 +1,28 @@
+/** @file Express handlers for listing and creating customer records. */
+
 import type { Request, Response } from "express";
 import db from "../database/database.js";
 
-// Get all customers from the database
+/**
+ * Returns all customers ordered by name.
+ *
+ * @param _req - Unused Express request.
+ * @param res - Express response used to send the customer array as JSON.
+ * @returns void; sends HTTP 200 with the customer list.
+ */
 export function getCustomers(_req: Request, res: Response) {
   const customers = db.prepare("SELECT * FROM customers ORDER BY name").all();
 
   res.json(customers);
 }
-// Create a new customer
+
+/**
+ * Validates required fields and creates a customer, normalizing blank contacts to null.
+ *
+ * @param req - Request body with name, address, and optional email and phone.
+ * @param res - Express JSON response.
+ * @returns The Express response object after sending customer JSON (201) or a validation error (400).
+ */
 export function createCustomer(req: Request, res: Response) {
   const { name, email, phone, address } = req.body ?? {};
 

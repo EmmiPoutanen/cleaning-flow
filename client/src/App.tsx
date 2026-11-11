@@ -1,3 +1,5 @@
+/** @file Coordinates dashboard data, navigation, and customer and visit forms. */
+
 import { useEffect, useState } from "react";
 import {
   getDailyReport,
@@ -13,7 +15,11 @@ import "./App.css";
 import CustomerManagement from "./components/CustomerManagement";
 import VisitManagement from "./components/VisitManagement";
 
-// Get today's date in local time as YYYY-MM-DD
+/**
+ * Returns today as YYYY-MM-DD using the browser's local time zone.
+ *
+ * @returns The local calendar date as a YYYY-MM-DD string.
+ */
 function getToday(): string {
   const today = new Date();
   const year = today.getFullYear();
@@ -23,6 +29,11 @@ function getToday(): string {
   return `${year}-${month}-${day}`;
 }
 
+/**
+ * Owns shared customer, visit, and report state for the application views.
+ *
+ * @returns The application JSX element, including navigation and loading or error feedback.
+ */
 function App() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [selectedDate, setSelectedDate] = useState(getToday());
@@ -34,9 +45,14 @@ function App() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [updatingVisitId, setUpdatingVisitId] = useState<number | null>(null);
 
-  // Load dashboard data whenever the selected date changes
+  // Ignore stale results after the date changes or the component unmounts.
   useEffect(() => {
     let cancelled = false;
+    /**
+     * Fetches shared data and limits displayed visits to the selected date.
+     *
+     * @returns A promise resolving without a value; stale results are ignored and load errors displayed.
+     */
     async function loadDashboard() {
       try {
         setLoading(true);
@@ -70,6 +86,12 @@ function App() {
     };
   }, [selectedDate]);
 
+  /**
+   * Marks a visit completed and updates local report counts after the API succeeds.
+   *
+   * @param visitId - ID of the scheduled visit to complete.
+   * @returns A promise resolving without a value; update errors are displayed on the dashboard.
+   */
   async function handleStatusChange(visitId: number) {
     try {
       setUpdatingVisitId(visitId);

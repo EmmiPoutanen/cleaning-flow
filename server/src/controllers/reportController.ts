@@ -1,8 +1,16 @@
+/** @file Express handler for daily visit counts and planned working time. */
+
 import type { Request, Response } from "express";
 import db from "../database/database.js";
 import { isValidDate } from "../utils/date.js";
 
-// Get a daily summary report
+/**
+ * Returns visit counts and planned duration for a valid YYYY-MM-DD query date.
+ *
+ * @param req - Request with a YYYY-MM-DD date query parameter.
+ * @param res - Express JSON response.
+ * @returns The Express response after sending daily totals (200) or an invalid-date error (400).
+ */
 export function getDailyReport(req: Request, res: Response) {
   const date = req.query.date;
 
