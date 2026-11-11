@@ -1,0 +1,11 @@
+**/node_modules/
+**/dist/
+**/coverage/
+**/.vite/
+**/.cache/
+**/*.tsbuildinfo
+**/package-lock.json
+**/.env
+**/.env.*
+**/*.db
+**/*.db-*

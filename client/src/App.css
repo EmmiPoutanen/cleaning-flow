@@ -1,0 +1,561 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #f5f7f5;
+  color: #26352e;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.topbar {
+  min-height: 72px;
+  padding: 0 7%;
+  background: #ffffff;
+  border-bottom: 1px solid #e8ede9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.brand-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #34765a;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+
+.topbar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topbar-nav button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #68776e;
+  cursor: pointer;
+}
+
+.topbar-nav button:hover,
+.topbar-nav button[aria-pressed="true"] {
+  background: #edf5ef;
+  color: #34765a;
+}
+
+.dashboard > div > .customers-section,
+.dashboard > div > .visits-management {
+  margin-top: 0;
+}
+
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  color: #56836b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: 32px;
+}
+
+.subtitle,
+.section-heading p {
+  color: #68776e;
+  margin: 0;
+  font-size: 14px;
+}
+
+.date-control {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.date-control label {
+  font-size: 12px;
+  color: #68776e;
+}
+
+.date-control input {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #dce5df;
+  border-radius: 8px;
+  background: white;
+  color: #26352e;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #e8ede9;
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.stat-card p {
+  margin: 0 0 16px;
+  color: #718077;
+  font-size: 13px;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.stat-card span {
+  color: #68776e;
+  font-size: 12px;
+}
+
+.visits-section,
+.customers-section,
+.visits-management {
+  background: white;
+  border: 1px solid #e8ede9;
+  border-radius: 12px;
+  padding: 26px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.section-heading h2 {
+  margin: 0 0 7px;
+  font-size: 19px;
+}
+
+.visit-count {
+  flex-shrink: 0;
+  color: #56836b;
+  background: #edf5ef;
+  border-radius: 20px;
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+.visits-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.visit-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-top: 1px solid #edf0ed;
+}
+
+.visit-notes {
+  flex-basis: 100%;
+  min-width: 0;
+  color: #42584a;
+  background: #f5f8f5;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.visit-notes h4 {
+  margin: 0 0 8px;
+}
+.visit-notes ul {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+.visit-notes li + li {
+  margin-top: 5px;
+}
+.visit-notes summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.visit-notes .original-notes {
+  white-space: pre-wrap;
+  margin-bottom: 0;
+}
+
+.visit-main {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.visit-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #edf5ef;
+  color: #34765a;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+
+.visit-main h3 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+.visit-main p,
+.visit-details {
+  color: #68776e;
+  font-size: 12px;
+}
+
+.visit-main p {
+  margin: 0;
+}
+
+.visit-details {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.status {
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.status-completed {
+  background: #eaf5ed;
+  color: #34765a;
+}
+
+.status-pending {
+  background: #fff4df;
+  color: #9a712b;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fafcfa;
+  border-radius: 8px;
+}
+
+.empty-state h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.empty-state p,
+.message {
+  color: #68776e;
+  font-size: 13px;
+}
+
+.error {
+  color: #b54747;
+}
+
+@media (max-width: 800px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visit-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .visit-details {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 500px) {
+  .dashboard {
+    padding: 32px 18px;
+  }
+
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    padding: 0 18px;
+  }
+}
+
+.customers-section {
+  margin-top: 28px;
+}
+
+.customer-form,
+.visit-form {
+  margin-top: 24px;
+  padding: 22px;
+  background: #fafcfa;
+  border-radius: 10px;
+}
+
+.customer-form h3,
+.customer-list h3 {
+  margin: 0 0 18px;
+  font-size: 15px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-field {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-field label {
+  color: #68776e;
+  font-size: 12px;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 11px 12px;
+  border: 1px solid #dce5df;
+  border-radius: 7px;
+  background: white;
+  color: #26352e;
+}
+
+.date-control input:focus,
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus,
+button:focus-visible {
+  outline: 2px solid #a6c9b2;
+  outline-offset: 2px;
+  border-color: #56836b;
+}
+
+.customer-form button,
+.visit-form button {
+  margin-top: 18px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: 7px;
+  background: #34765a;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.customer-form button:hover:not(:disabled),
+.visit-form button:hover:not(:disabled) {
+  background: #285d46;
+}
+
+.customer-form button:disabled,
+.visit-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-error {
+  margin-top: 12px;
+  color: #b54747;
+  font-size: 13px;
+}
+
+.form-success {
+  margin-top: 12px;
+  color: #34765a;
+  font-size: 13px;
+}
+
+.customer-list {
+  margin-top: 30px;
+}
+
+.customer-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid #edf0ed;
+}
+
+.customer-card h4 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+.customer-card p,
+.customer-contact {
+  margin: 0;
+  color: #68776e;
+  font-size: 12px;
+}
+
+.customer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: right;
+}
+
+.empty-message {
+  color: #68776e;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .customer-contact {
+    text-align: left;
+  }
+}
+
+.visits-management {
+  margin-top: 28px;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.notes-field {
+  margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+  .visits-section,
+  .customers-section,
+  .visits-management {
+    padding: 18px;
+  }
+
+  .customer-form,
+  .visit-form {
+    padding: 16px;
+  }
+
+  .section-heading {
+    flex-wrap: wrap;
+  }
+
+  .topbar {
+    gap: 16px;
+    padding-block: 16px;
+    flex-wrap: wrap;
+  }
+}
+
+.visit-main h3,
+.visit-main p,
+.visit-details,
+.customer-card,
+.section-heading {
+  overflow-wrap: anywhere;
+}
+
+.complete-button {
+  padding: 7px 12px;
+  border: 1px solid #34765a;
+  border-radius: 7px;
+  background: white;
+  color: #34765a;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.complete-button:hover:not(:disabled) {
+  background: #edf5ef;
+}
+
+.complete-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

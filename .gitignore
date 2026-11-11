@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build output and caches
+dist/
+dist-ssr/
+*.tsbuildinfo
+.vite/
+.cache/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+
+# Local environment settings (keep example files available to commit)
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+
+# Local SQLite database and journal files
+/server/Cleaning-flow.db
+/server/Cleaning-flow.db-*
+
+# Editor settings
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
