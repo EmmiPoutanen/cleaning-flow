@@ -10,6 +10,32 @@ track completed visits, and view daily workload summaries.
 - View visits by date, mark them completed, and track daily totals and hours.
 - Generate optional AI summaries of visit notes while keeping the original notes.
 
+## Screenshots
+
+### Dashboard
+
+View scheduled visits, completion status, and daily workload totals.
+
+![Dashboard](docs/images/dashboard.png)
+
+### Add a customer
+
+Create a customer before scheduling their cleaning visits.
+
+![Add a customer](docs/images/add_customer.png)
+
+### Schedule a visit
+
+Assign an employee, choose a date and duration, and add visit notes.
+
+![Schedule a visit](docs/images/schedule_visit.png)
+
+### AI visit summary
+
+AI generates a summary based on the visit notes while keeping the original notes available.
+
+![AI visit summary on the dashboard](docs/images/dashboard_with_summary.png)
+
 ## Tech stack
 
 React, TypeScript, and Vite frontend; Express and SQLite (`better-sqlite3`)
@@ -17,7 +43,8 @@ backend. Tests use Vitest, React Testing Library, and Supertest.
 
 ## Run locally
 
-Requires Node.js 22.18 or newer. From the project root:
+Requires Node.js 22.18 or newer. From the project root, install dependencies for
+the root tooling, frontend, and backend:
 
 ```sh
 npm ci
@@ -42,7 +69,7 @@ to use another location.
 
 To enable AI summaries, copy `server/.env.example` to `server/.env`, set
 `OPENAI_API_KEY`, and restart the backend. `OPENAI_MODEL` defaults to
-`gpt-5-mini`. Visit notes are sent to OpenAI when summaries are enabled. Keep
+`gpt-6-luna`. Visit notes are sent to OpenAI when summaries are enabled. Keep
 the API key on the server and out of Git. The app works without an API key.
 
 ## Usage
@@ -69,9 +96,12 @@ for details.
 The API provides customer and visit management, visit status updates, daily
 reports, and a health check at `/api/health`.
 
-## Screenshots / demo
-
 ## Current limitations
 
-Authentication and visit-note editing are not implemented. The frontend API URL
-is currently hardcoded for localhost.
+- No authentication or user roles; API endpoints are accessible without signing in.
+- Customers and visits cannot be edited or deleted. Visits only support status
+  updates after creation, so dates, employee assignments, and notes cannot be changed.
+- Scheduling records a date and duration, without start times, employee
+  availability, or conflict detection. Employee names are entered as free text.
+- The frontend API URL is hardcoded to `http://localhost:3000/api`; deployment
+  to another host requires changing it.
